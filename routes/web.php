@@ -11,3 +11,5 @@ Route::get('/', function () {
 Route::get('/hola', [HolaController::class, 'index']);
 
 Route::resource('articles', ArticleController::class);
+
+Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.show');

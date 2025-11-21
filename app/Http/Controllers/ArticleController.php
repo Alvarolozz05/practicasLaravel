@@ -9,4 +9,9 @@
              $arts = Article::all();
             return view('articles.index', compact('arts'));
         }
+
+        public function show($id) {
+            $article = Article::find($id);
+            return view('articles.show', compact('article'));
+        }
     }

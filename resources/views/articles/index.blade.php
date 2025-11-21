@@ -19,12 +19,10 @@
                 @foreach($arts as $article)
                 <tr>
                     <td>
-                        <a href="{{ route('articles.show', $article) }}">
+                        <a href="{{ route('articles.show', $article->id) }}">
                             {{ $article->title }}
                         </a>
                     </td>
-
-                    {{-- Si usas la columna "date" --}}
                     <td>{{ $article->date }}</td>
                 </tr>
                 @endforeach
