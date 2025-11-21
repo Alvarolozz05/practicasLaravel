@@ -10,4 +10,4 @@ Route::get('/', function () {
 
 Route::get('/hola', [HolaController::class, 'index']);
 
-Route::get('/articles', [ArticleController::class, 'index']);
+Route::resource('articles', ArticleController::class);
