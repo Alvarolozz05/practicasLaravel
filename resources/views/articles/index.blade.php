@@ -8,6 +8,8 @@
     @if($arts->isEmpty())
         <p>No hay artículos disponibles.</p>
     @else
+        <a href="{{ route('articles.create') }}">Nuevo artículo</a>
+        <br><br>
         <table border="1" cellpadding="6">
             <thead>
                 <tr>
