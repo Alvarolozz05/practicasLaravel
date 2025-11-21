@@ -20,22 +20,34 @@
         }
 
         public function store(Request $request) {
-            // Validación
             $request->validate([
                 'title' => 'required|min:3',
                 'body'  => 'required|min:10',
                 'date'  => 'required|date',
             ]);
         
-            // Crear artículo
             $article = new Article();
             $article->title = $request->title;
             $article->body  = $request->body;
             $article->date  = $request->date;
-            $article->user_id = 1; // Como pide el ejercicio
+            $article->user_id = 1;
             $article->save();
 
-            // Redirigir con mensaje
             return redirect()->route('articles.index')->with('success', 'Artículo creado correctamente.');
+        }
+
+        public function destroy($id) {
+            $article = Article::find($id);
+
+            if (!$article) {
+                return redirect()->route('articles.index')->with('error', 'Artículo no encontrado.');
+            }
+
+            try {
+                $article->delete();
+                return redirect()->route('articles.index')->with('success', 'Artículo eliminado correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('articles.index')->with('error', 'Error al borrar el artículo.');
+            }
         }
     }
