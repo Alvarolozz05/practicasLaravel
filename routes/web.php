@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HolaController;
 use App\Http\Controllers\ArticleController;
@@ -14,8 +15,18 @@ Route::resource('articles', ArticleController::class);
 
 Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
-Route::get('articles/create', [ArticleController::class, 'create'])->name('articles.create');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('articles', [ArticleController::class, 'store'])->name('articles.store');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-Route::delete('articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+    Route::get('articles/create', [ArticleController::class, 'create'])->name('articles.create');
+    Route::post('articles', [ArticleController::class, 'store'])->name('articles.store');
+    Route::delete('articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+});
+
+require __DIR__.'/auth.php';

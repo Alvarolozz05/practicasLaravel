@@ -1,3 +1,5 @@
+@auth
+
 @extends('layouts.master')
 
 @section('title', 'Nuevo artículo')
@@ -38,3 +40,4 @@
     </form>
 
 @endsection
+@endauth

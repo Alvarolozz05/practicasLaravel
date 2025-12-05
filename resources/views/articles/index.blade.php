@@ -5,8 +5,10 @@
 @section('content')
     <h2>Listado de Artículos</h2>
 
-    <a href="{{ route('articles.create') }}">Nuevo artículo</a>
-    <br><br>
+    @auth
+        <a href="{{ route('articles.create') }}">Nuevo artículo</a>
+        <br><br>
+    @endauth
 
     @if(session('success'))
         <div style="color: green;">{{ session('success') }}</div>
@@ -23,7 +25,9 @@
                 <tr>
                     <th>Título</th>
                     <th>Fecha</th>
+                    @auth
                     <th>Acciones</th>
+                    @endauth
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +39,7 @@
                         </a>
                     </td>
                     <td>{{ $article->date }}</td>
+                    @auth
                     <td>
                         <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este artículo?');">
                             @csrf
@@ -42,6 +47,7 @@
                             <button type="submit">Eliminar</button>
                         </form>
                     </td>
+                    @endauth
                 </tr>
                 @endforeach
             </tbody>
