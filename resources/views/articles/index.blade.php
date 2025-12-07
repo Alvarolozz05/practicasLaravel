@@ -32,23 +32,38 @@
             </thead>
             <tbody>
                 @foreach($arts as $article)
-                <tr>
-                    <td>
-                        <a href="{{ route('articles.show', $article->id) }}">
-                            {{ $article->title }}
-                        </a>
-                    </td>
-                    <td>{{ $article->date }}</td>
                     @auth
-                    <td>
-                        <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este artículo?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </td>
+                        @if($article->user_id === auth()->user()->id)
+                            <tr>
+                                <td>
+                                    <a href="{{ route('articles.show', $article->id) }}">
+                                        {{ $article->title }}
+                                    </a>
+                                </td>
+                                <td>{{ $article->date }}</td>
+                                <td>
+                                    <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este artículo?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Eliminar</button>
+                                    </form>
+                                    
+                                    <form action="{{ route('articles.edit', $article->id) }}" method="GET">
+                                        <button type="submit">Editar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
+                    @else
+                        <tr>
+                            <td>
+                                <a href="{{ route('articles.show', $article->id) }}">
+                                    {{ $article->title }}
+                                </a>
+                            </td>
+                            <td>{{ $article->date }}</td>
+                        </tr>
                     @endauth
-                </tr>
                 @endforeach
             </tbody>
         </table>

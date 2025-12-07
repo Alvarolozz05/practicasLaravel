@@ -30,7 +30,7 @@
             $article->title = $request->title;
             $article->body  = $request->body;
             $article->date  = $request->date;
-            $article->user_id = 1;
+            $article->user_id = auth()->user()->id;
             $article->save();
 
             return redirect()->route('articles.index')->with('success', 'Artículo creado correctamente.');
@@ -49,5 +49,35 @@
             } catch (\Exception $e) {
                 return redirect()->route('articles.index')->with('error', 'Error al borrar el artículo.');
             }
+        }
+
+        public function update(Request $request, $id) {
+            $article = Article::find($id);
+            if (!$article) {
+                return redirect()->route('articles.index')->with('error', 'Artículo no encontrado.');
+            }
+
+            // opcional: if ($article->user_id !== auth()->id()) abort(403);
+
+            $request->validate([
+                'title' => 'required|min:3',
+                'body'  => 'required|min:10',
+                'date'  => 'required|date',
+            ]);
+
+            $article->title = $request->title;
+            $article->body  = $request->body;
+            $article->date  = $request->date;
+            $article->save();
+
+            return redirect()->route('articles.index')->with('success', 'Artículo actualizado correctamente.');
+        }
+
+        public function edit($id) {
+            $article = Article::find($id);
+            if (!$article) {
+                return redirect()->route('articles.index')->with('error', 'Artículo no encontrado.');
+            }
+            return view('articles.create', compact('article'));
         }
     }
