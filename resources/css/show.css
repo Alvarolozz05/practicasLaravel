@@ -1,0 +1,72 @@
+/* show.css */
+
+/* Estilo general del contenedor */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+/* Estilo para etiquetas fuertes */
+strong {
+    color: #34495e;
+}
+
+/* Línea horizontal estilizada */
+hr {
+    border: none;
+    border-top: 2px solid #ecf0f1;
+    margin: 20px 0;
+}
+
+/* Estilo del enlace de regreso */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    transform: translateX(-3px);
+}
+
+/* Estilo para el cuerpo del artículo */
+p:last-of-type {
+    white-space: pre-line; /* Mantener saltos de línea del contenido */
+    padding: 10px 0;
+}
+
+/* Responsivo básico */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+}

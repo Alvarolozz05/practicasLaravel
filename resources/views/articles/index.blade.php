@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@vite(['resources/css/articulos.css'])
 
 @section('title', 'Listado de Artículos')
 

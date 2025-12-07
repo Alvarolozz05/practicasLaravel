@@ -1,6 +1,7 @@
 @auth
 
 @extends('layouts.master')
+@vite(['resources/css/crear_articulos.css'])
 
 @section('title', 'Nuevo artículo')
 

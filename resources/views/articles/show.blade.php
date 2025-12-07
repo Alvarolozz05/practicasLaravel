@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@vite(['resources/css/show.css'])
 
 @section('title', $article->title)
 
