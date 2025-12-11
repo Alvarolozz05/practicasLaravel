@@ -21,6 +21,7 @@
     @if($arts->isEmpty())
         <p>No hay artículos disponibles.</p>
     @else
+
         <table border="1" cellpadding="6">
             <thead>
                 <tr>
@@ -34,6 +35,7 @@
             <tbody>
                 @foreach($arts as $article)
                     @auth
+                        fesfd
                         @if($article->user_id === auth()->user()->id)
                             <tr>
                                 <td>
