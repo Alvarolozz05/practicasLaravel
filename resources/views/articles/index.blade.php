@@ -35,7 +35,6 @@
             <tbody>
                 @foreach($arts as $article)
                     @auth
-                        fesfd
                         @if($article->user_id === auth()->user()->id)
                             <tr>
                                 <td>
