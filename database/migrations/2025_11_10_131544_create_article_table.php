@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->text('body');
             $table->date('date');
             $table->unsignedBigInteger('user_id');
-            $table->timestamps(); // <-- Añadido
+            $table->timestamps();
         });
     }
 
