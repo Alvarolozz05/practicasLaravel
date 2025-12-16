@@ -6,7 +6,7 @@
     class ArticleController extends Controller {
 
         public function index() {
-             $arts = Article::all();
+            $arts = Article::all();
             return view('articles.index', compact('arts'));
         }
 
